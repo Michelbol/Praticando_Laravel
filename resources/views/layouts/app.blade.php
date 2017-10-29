@@ -16,11 +16,22 @@
 
 </head>
 <body id="app-layout">
-<div class="row"></div>
     @include('layouts._nav')
-<div class="container">
-    @yield('content')
-</div>
+    <main>
+        @if(Session::has('mensagem'))
+            <div class="container">
+                <div class="row">
+                    <div class="card {{Session::get('mensagem')['class']}}">
+                        <div align="center" class="card-content">
+                            {{Session::get('mensagem')['msg']}}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        @endif
+        @yield('content')
+    </main>
     @include('layouts._footer')
     <!-- Scripts -->
     <script src="{{asset('lib/jquery/dist/jquery.js')}}"></script>

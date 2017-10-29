@@ -11,13 +11,10 @@ class AlunoController extends Controller
 {
     public function index(){
         $alunos = Aluno::all();
-
         return view('site.aluno.index', compact('alunos'));
     }
 
     public function adicionar(){
-
-
         return view('site.aluno.adicionar');
     }
 
