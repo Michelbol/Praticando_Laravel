@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Treino extends Model
-{
+class Treino extends Model{
     protected $fillable=[
         'nome',
         'descricao',

@@ -26,7 +26,7 @@ Route::group(['middleware'=>'auth'], function(){
         return view('site.site');
     }]);
 //------------------------------------------------------INICIO ALUNO-------------------------------------------------------------------------
-    Route::get('/aluno', ['as' => 'site.aluno', 'uses' =>'site\AlunoController@index']);
+    Route::get('/alunos', ['as' => 'site.alunos', 'uses' =>'site\AlunoController@index']);
     Route::get('/aluno/adicionar', ['as' => 'site.aluno.adicionar', 'uses' =>'site\AlunoController@adicionar']);
     Route::post('/aluno/salvar', ['as' => 'site.aluno.salvar', 'uses' =>'site\AlunoController@salvar']);
     Route::get('/aluno/editar/{id}', ['as' => 'site.aluno.editar', 'uses' =>'site\AlunoController@editar']);
@@ -39,7 +39,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/aluno/treino/deletar/{aluno_id}/{treino_id}', ['as' => 'site.aluno.treino.deletar', 'uses' =>'site\AlunoController@deletarTreino']);
 //------------------------------------------------------FIM ALUNO/TREINO---------------------------------------------------------------------
 //------------------------------------------------------INICIO TREINO------------------------------------------------------------------------
-    Route::get('/treino', ['as' => 'site.treino', 'uses' =>'site\TreinoController@index']);
+    Route::get('/treinos', ['as' => 'site.treinos', 'uses' =>'site\TreinoController@index']);
     Route::get('/treino/adicionar', ['as' => 'site.treino.adicionar', 'uses' =>'site\TreinoController@adicionar']);
     Route::post('/treino/salvar', ['as' => 'site.treino.salvar', 'uses' =>'site\TreinoController@salvar']);
     Route::get('/treino/editar/{id}', ['as' => 'site.treino.editar', 'uses' =>'site\TreinoController@editar']);
@@ -52,12 +52,20 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/treino/exercicio/deletar/{treino_id}/{exercicio_id}', ['as' => 'site.treino.exercicio.deletar', 'uses' =>'site\TreinoController@deletarExercicio']);
 //------------------------------------------------------FIM TREINO/EXERCICIO------------------------------------------------------------------
 //------------------------------------------------------INICIO EXERCICIO----------------------------------------------------------------------
-    Route::get('/exercicio', ['as' => 'site.exercicio', 'uses' =>'site\ExercicioController@index']);
+    Route::get('/exercicios', ['as' => 'site.exercicios', 'uses' =>'site\ExercicioController@index']);
     Route::get('/exercicio/adicionar', ['as' => 'site.exercicio.adicionar', 'uses' =>'site\ExercicioController@adicionar']);
     Route::post('/exercicio/salvar', ['as' => 'site.exercicio.salvar', 'uses' =>'site\ExercicioController@salvar']);
     Route::get('/exercicio/editar/{id}', ['as' => 'site.exercicio.editar', 'uses' =>'site\ExercicioController@editar']);
     Route::post('/exercicio/atualizar/{id}', ['as' => 'site.exercicio.atualizar', 'uses' =>'site\ExercicioController@atualizar']);
     Route::get('/exercicio/deletar/{id}', ['as' => 'site.exercicio.deletar', 'uses' =>'site\ExercicioController@deletar']);
 //------------------------------------------------------FIM EXERCICIO------------------------------------------------------------------------
+//------------------------------------------------------INICIO DIETA----------------------------------------------------------------------
+    Route::get('/dietas', ['as' => 'site.dietas', 'uses' =>'site\DietaController@index']);
+    Route::get('/dieta/adicionar', ['as' => 'site.dieta.adicionar', 'uses' =>'site\DietaController@adicionar']);
+    Route::post('/dieta/salvar', ['as' => 'site.dieta.salvar', 'uses' =>'site\DietaController@salvar']);
+    Route::get('/dieta/editar/{id}', ['as' => 'site.dieta.editar', 'uses' =>'site\DietaController@editar']);
+    Route::post('/dieta/atualizar/{id}', ['as' => 'site.dieta.atualizar', 'uses' =>'site\DietaController@atualizar']);
+    Route::get('/dieta/deletar/{id}', ['as' => 'site.dieta.deletar', 'uses' =>'site\DietaController@deletar']);
+//------------------------------------------------------FIM DIETA------------------------------------------------------------------------
 });
 //------------------------------------------------------FIM LOGADO---------------------------------------------------------------------------

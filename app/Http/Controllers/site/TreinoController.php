@@ -28,7 +28,7 @@ class TreinoController extends Controller
 
         $treino->save();
 
-        return redirect()->route('site.treino');
+        return redirect()->route('site.treinos');
     }
 
     public function editar($id){
@@ -45,12 +45,12 @@ class TreinoController extends Controller
 
         $treino->update();
 
-        return redirect()->route('site.treino');
+        return redirect()->route('site.treinos');
     }
 
     public function deletar($id){
         Treino::find($id)->delete();
-        return redirect()->route('site.treino');
+        return redirect()->route('site.treinos');
     }
 
     public function exercicio($id){

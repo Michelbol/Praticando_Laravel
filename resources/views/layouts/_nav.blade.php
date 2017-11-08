@@ -13,9 +13,9 @@
                         </a>
                     </li>
                     <ul id="dropdown1" class="dropdown-content">
-                        <li><a href="{{route('site.aluno')}}">Aluno</a></li>
-                        <li><a href="{{route('site.treino')}}">Treino</a></li>
-                        <li><a href="{{route('site.exercicio')}}">Exercícios</a></li>
+                        <li><a href="{{route('site.alunos')}}">Aluno</a></li>
+                        <li><a href="{{route('site.treinos')}}">Treino</a></li>
+                        <li><a href="{{route('site.exercicios')}}">Exercícios</a></li>
                     </ul>
                 <li><a href="{{route('site.sair')}}">Sair</a></li>
                 @endif

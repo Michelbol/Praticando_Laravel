@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Aluno extends Model
-{
+class Aluno extends Model{
     public function treinos(){
         return $this->belongsToMany(Treino::class);
     }
@@ -14,5 +13,8 @@ class Aluno extends Model
     }
     public function removerTreino(Treino $treino){
         return $this->treinos()->detach($treino->id);
+    }
+    public function dieta(){
+        return $this->belongsToMany(Dieta::class);
     }
 }

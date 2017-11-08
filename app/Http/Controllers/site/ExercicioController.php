@@ -27,7 +27,7 @@ class ExercicioController extends Controller
 
         $exercicios->save();
 
-        return redirect()->route('site.exercicio');
+        return redirect()->route('site.exercicios');
     }
 
     public function editar($id){
@@ -44,11 +44,11 @@ class ExercicioController extends Controller
 
         $exercicios->update();
 
-        return redirect()->route('site.exercicio');
+        return redirect()->route('site.exercicios');
     }
 
     public function deletar($id){
         Exercicio::find($id)->delete();
-        return redirect()->route('site.exercicio');
+        return redirect()->route('site.exercicios');
     }
 }

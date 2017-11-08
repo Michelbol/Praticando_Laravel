@@ -7,8 +7,7 @@ use App\Treino;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AlunoController extends Controller
-{
+class AlunoController extends Controller{
     public function index(){
         $alunos = Aluno::all();
         return view('site.aluno.index', compact('alunos'));
@@ -29,7 +28,7 @@ class AlunoController extends Controller
 
         $aluno->save();
 
-        return redirect()->route('site.aluno');
+        return redirect()->route('site.alunos');
     }
 
     public function editar($id){
@@ -47,12 +46,12 @@ class AlunoController extends Controller
 
         $aluno->update();
 
-        return redirect()->route('site.aluno');
+        return redirect()->route('site.alunos');
     }
 
     public function deletar($id){
         Aluno::find($id)->delete();
-        return redirect()->route('site.aluno');
+        return redirect()->route('site.alunos');
     }
     public function treino($id){
         $aluno = Aluno::find($id);

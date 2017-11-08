@@ -6,7 +6,7 @@
         <nav>
             <div class="nav-wrapper blue darken-1">
                 <div class="col s12">
-                    <a class="breadcrumb" href="{{route('site.aluno')}}">Lista de Usuários</a>
+                    <a class="breadcrumb" href="{{route('site.alunos')}}">Lista de Usuários</a>
                     <a class="breadcrumb">Lista de Treinos</a>
                 </div>
             </div>
