@@ -30,6 +30,6 @@ class CreateExercicioTreinoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('treino_exercicio');
+        Schema::dropIfExists('exercicio_treino');
     }
 }
