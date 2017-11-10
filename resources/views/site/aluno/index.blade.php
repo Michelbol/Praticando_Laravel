@@ -13,10 +13,12 @@
                     </div>
                 </nav>
             </div>
+            <div class="row">
+                <a class="waves-effect waves-light btn" href="{{route('site.aluno.adicionar')}}">Adicionar</a>
+            </div>
             <table>
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Nome</th>
                     <th>Endereco</th>
                     <th>Bairro</th>
@@ -27,11 +29,10 @@
                 <tbody>
                 @foreach($alunos as $aluno)
                     <tr>
-                        <td>{{$aluno->id}}</td>
-                        <td>{{$aluno->nome}}</td>
-                        <td>{{$aluno->endereco}}</td>
-                        <td>{{$aluno->bairro}}</td>
-                        <td>{{$aluno->email}}</td>
+                        <td>{{str_limit($aluno->nome, 15)}}</td>
+                        <td>{{str_limit($aluno->endereco,15)}}</td>
+                        <td>{{str_limit($aluno->bairro,15)}}</td>
+                        <td>{{str_limit($aluno->email,15)}}</td>
                         <td>
                             <a class="waves-effect waves-light btn" href="{{route('site.aluno.editar', $aluno)}}}">Editar</a>
                             <a class="waves-effect waves-light btn green" href="{{route('site.aluno.treino', $aluno)}}}">Treinos</a>
@@ -42,9 +43,6 @@
                 @endforeach
                 </tbody>
             </table>
-        </div>
-        <div class="row">
-            <a class="waves-effect waves-light btn" href="{{route('site.aluno.adicionar')}}">Adicionar</a>
         </div>
     </div>
 

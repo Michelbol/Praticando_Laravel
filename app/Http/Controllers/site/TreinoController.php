@@ -61,11 +61,14 @@ class TreinoController extends Controller
     }
 
     public function salvarExercicio(Request $request, $id){
-        $treino = Treino::find($id);
-        $dados = $request->all();
-        $exercicio = Exercicio::find($dados['exercicio_id']);
-        $treino->adicionarExercicio($exercicio);
-
+        try{
+            $treino = Treino::find($id);
+            $dados = $request->all();
+            $exercicio = Exercicio::find($dados['exercicio_id']);
+            $treino->adicionarExercicio($exercicio);
+        }catch (\Exception $e){
+            \Session::flash('mensagem', ['msg'=>'Erro! Não foi possível adicionar o execício!','class'=>'red white-text']);
+        }
         return redirect()->route('site.treino.exercicio', $treino->id);
     }
 

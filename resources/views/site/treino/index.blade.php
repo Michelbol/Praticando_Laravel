@@ -13,6 +13,9 @@
             </nav>
         </div>
         <div class="row">
+            <a class="waves-effect waves-light btn" href="{{route('site.treino.adicionar')}}">Adicionar</a>
+        </div>
+        <div class="row">
             <table>
                 <thead>
                 <tr>
@@ -39,9 +42,6 @@
                 @endforeach
                 </tbody>
             </table>
-        </div>
-        <div class="row">
-            <a class="waves-effect waves-light btn" href="{{route('site.treino.adicionar')}}">Adicionar</a>
         </div>
     </div>
 

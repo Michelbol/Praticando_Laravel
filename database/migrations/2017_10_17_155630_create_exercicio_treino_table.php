@@ -16,10 +16,11 @@ class CreateExercicioTreinoTable extends Migration
         Schema::create('exercicio_treino', function(Blueprint $table){
             $table->increments('id');
             $table->integer('treino_id')->unsigned();
-            $table->foreign('treino_id')->references('id')->on('treinos');
             $table->integer('exercicio_id')->unsigned();
-            $table->foreign('exercicio_id')->references('id')->on('exercicios');
             $table->timestamps();
+
+            $table->foreign('treino_id')->references('id')->on('treinos')->onDelete('cascade');
+            $table->foreign('exercicio_id')->references('id')->on('exercicios')->onDelete('cascade');
         });
     }
 

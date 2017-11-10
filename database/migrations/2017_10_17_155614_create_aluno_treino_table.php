@@ -16,10 +16,11 @@ class CreateAlunoTreinoTable extends Migration
         Schema::create('aluno_treino', function(Blueprint $table){
             $table->increments('id');
             $table->integer('aluno_id')->unsigned();
-            $table->foreign('aluno_id')->references('id')->on('alunos');
             $table->integer('treino_id')->unsigned();
-            $table->foreign('treino_id')->references('id')->on('treinos');
             $table->timestamps();
+
+            $table->foreign('aluno_id')->references('id')->on('alunos')->onDelete('cascade');
+            $table->foreign('treino_id')->references('id')->on('treinos')->onDelete('cascade');
         });
     }
 

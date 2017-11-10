@@ -11,9 +11,10 @@ class UsuariosSeeds extends Seeder
      */
     public function run(){
         DB::table('users')->insert([
-            'name' => "Michel Bolzon",
-            'email' => "admin@mail.com",
-            'password' => bcrypt("123456"),
+            'name' => "Master",
+            'email' => "admin",
+            'password' => bcrypt("master"),
         ]);
+        //factory(App\User::class, 50)->create();
     }
 }

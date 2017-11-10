@@ -22,3 +22,31 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Aluno::class, function (Faker\Generator $faker) {
+
+    return [
+        'nome' => $faker->name,
+        'endereco' => $faker->address,
+        'bairro' => $faker->streetAddress,
+        'email' => $faker->email,
+    ];
+});
+
+$factory->define(App\Exercicio::class, function (Faker\Generator $faker) {
+
+    return [
+        'nome' => $faker->name,
+        'endereco' => $faker->address,
+        'bairro' => $faker->streetAddress,
+        'email' => $faker->email,
+    ];
+});
+
+$factory->define(App\Treino::class, function (Faker\Generator $faker) {
+
+    return [
+        'nome' => $faker->name,
+        'descricao' => $faker->sentence,
+    ];
+});

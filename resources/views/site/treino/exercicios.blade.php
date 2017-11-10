@@ -6,7 +6,8 @@
         <nav>
             <div class="nav-wrapper blue darken-1">
                 <div class="col s12">
-                    <a class="breadcrumb">Lista de Exercicios</a>
+                    <a class="breadcrumb" href="{{route('site.treinos')}}">Lista de Treinos</a>
+                    <a class="breadcrumb">Adicionar Exercícios</a>
                 </div>
             </div>
         </nav>
@@ -16,7 +17,7 @@
                 {{csrf_field()}}
                 <div class="input-field col s12">
                     <select name="exercicio_id">
-                        <option disabled selected>Escolha o Exercício</option>
+                        <option disabled selected value="">Escolha o Exercício</option>
                         @foreach($exercicios as $exercicio)
                             <option value="{{$exercicio->id}}">{{$exercicio->nome}}</option>
                         @endforeach
