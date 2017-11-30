@@ -37,6 +37,11 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/aluno/treino/{id}', ['as' => 'site.aluno.treino', 'uses' =>'site\AlunoController@treino']);
     Route::post('/aluno/treino/salvar/{id}', ['as' => 'site.aluno.treino.salvar', 'uses' =>'site\AlunoController@salvarTreino']);
     Route::get('/aluno/treino/deletar/{aluno_id}/{treino_id}', ['as' => 'site.aluno.treino.deletar', 'uses' =>'site\AlunoController@deletarTreino']);
+                    //----------------------TREINO/EXERCICIOS-------------------//
+    Route::get('/aluno/treino/exercicios/{id_treino}/{id_exercicio}', ['as' => 'site.aluno.treino.exercicio', 'uses' =>'site\AlunoController@treinoExercicios']);
+    Route::post('/aluno/treino/exercicio/salvar/{id}', ['as' => 'site.aluno.treino.exercicio.salvar', 'uses' =>'site\AlunoController@salvarExercicio']);
+    Route::get('/aluno/treino/exercicio/deletar/{treino_id}/{exercicio_id}', ['as' => 'site.aluno.treino.exercicio.deletar', 'uses' =>'site\AlunoController@deletarExercicio']);
+                    //---------------------FIM TREINO/EXERCÍCIOS---------------//
 //------------------------------------------------------FIM ALUNO/TREINO---------------------------------------------------------------------
 //------------------------------------------------------INICIO TREINO------------------------------------------------------------------------
     Route::get('/treinos', ['as' => 'site.treinos', 'uses' =>'site\TreinoController@index']);
@@ -67,5 +72,14 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/dieta/atualizar/{id}', ['as' => 'site.dieta.atualizar', 'uses' =>'site\DietaController@atualizar']);
     Route::get('/dieta/deletar/{id}', ['as' => 'site.dieta.deletar', 'uses' =>'site\DietaController@deletar']);
 //------------------------------------------------------FIM DIETA------------------------------------------------------------------------
+//------------------------------------------------------INICIO ITEMDIETA------------------------------------------------------------------------
+    Route::get('/dieta/refeicoes/{id}/{diasemana}', ['as' => 'site.dieta.refeicoes', 'uses' =>'site\ItemDietaController@index']);
+    Route::get('/dieta/refeicoes/adicionar/{id}/{diasemana}', ['as' => 'site.dieta.refeicoes.adicionar', 'uses' =>'site\ItemDietaController@adicionar']);
+    Route::post('/dieta/refeicoes/salvar', ['as' => 'site.dieta.refeicoes.salvar', 'uses' =>'site\ItemDietaController@salvar']);
+    Route::get('/dieta/refeicoes/editar/{id}', ['as' => 'site.dieta.refeicoes.editar', 'uses' =>'site\ItemDietaController@editar']);
+    Route::post('/dieta/refeicoes/atualizar/{id}', ['as' => 'site.dieta.refeicoes.atualizar', 'uses' =>'site\ItemDietaController@atualizar']);
+    Route::get('/dieta/refeicoes/deletar/{id}', ['as' => 'site.dieta.refeicoes.deletar', 'uses' =>'site\ItemDietaController@deletar']);
+    //------------------------------------------------------FIM ITEMDIETA------------------------------------------------------------------------
+
 });
 //------------------------------------------------------FIM LOGADO---------------------------------------------------------------------------

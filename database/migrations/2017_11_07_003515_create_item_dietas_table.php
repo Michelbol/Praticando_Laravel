@@ -18,7 +18,7 @@ class CreateItemDietasTable extends Migration
             $table->integer('dieta_id')->unsigned();
             $table->string('descricao', 1000)->nulablle();
             $table->time('horario')->nulablle();
-            $table->enum('diasemana', ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sabado', 'domingo']);
+            $table->enum('diasemana', ['segunda', 'terÃ§a', 'quarta', 'quinta', 'sexta', 'sabado', 'domingo']);
             $table->timestamps();
 
 

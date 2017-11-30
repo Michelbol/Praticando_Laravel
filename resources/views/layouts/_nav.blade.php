@@ -16,6 +16,7 @@
                         <li><a href="{{route('site.alunos')}}">Aluno</a></li>
                         <li><a href="{{route('site.treinos')}}">Treino</a></li>
                         <li><a href="{{route('site.exercicios')}}">Exercícios</a></li>
+                        <li><a href="{{route('site.dietas')}}">Dietas</a></li>
                     </ul>
                 <li><a href="{{route('site.sair')}}">Sair</a></li>
                 @endif

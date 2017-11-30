@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder
          $this->call(AlunosSeeds::class);
          $this->call(ExerciciosSeeds::class);
          $this->call(TreinosSeeds::class);
+         $this->call(DietasSeeds::class);
+         $this->call(ItensDietaSeeds::class);
     }
 }

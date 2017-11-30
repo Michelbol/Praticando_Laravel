@@ -13,13 +13,10 @@
                     </div>
                 </nav>
             </div>
-            <div class="row">
-                <a class="waves-effect waves-light btn" href="{{route('site.exercicio.adicionar')}}">Adicionar</a>
-            </div>
+                <a class="waves-effect waves-light btn right" href="{{route('site.exercicio.adicionar')}}">Adicionar</a>
             <table>
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Nome</th>
                     <th>Músculo</th>
                     <th>Ações</th>
@@ -28,7 +25,6 @@
                 <tbody>
                 @foreach($exercicios as $exercicio)
                     <tr>
-                        <td>{{$exercicio->id}}</td>
                         <td>{{$exercicio->nome}}</td>
                         <td>{{$exercicio->musculo}}</td>
                         <td>

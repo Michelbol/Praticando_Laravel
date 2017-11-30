@@ -13,9 +13,7 @@
                     </div>
                 </nav>
             </div>
-            <div class="row">
-                <a class="waves-effect waves-light btn" href="{{route('site.dieta.adicionar')}}">Adicionar</a>
-            </div>
+                <a class="waves-effect waves-light btn right" href="{{route('site.dieta.adicionar')}}">Adicionar</a>
             <table>
                 <thead>
                 <tr>

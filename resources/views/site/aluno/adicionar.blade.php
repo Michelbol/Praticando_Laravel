@@ -2,7 +2,7 @@
 
 @section('content')
     <h2 class="center">Adicionar Aluno</h2>
-    <div class="row">
+    <div class="row container">
         <nav>
             <div class="nav-wrapper blue darken-1">
                 <div class="col s12">
@@ -12,7 +12,7 @@
             </div>
         </nav>
     </div>
-    <div class="row">
+    <div class="row container">
         <form class="col s12" action="{{route('site.aluno.salvar')}}" method="post">
             {{csrf_field()}}
             @include('site.aluno._form')

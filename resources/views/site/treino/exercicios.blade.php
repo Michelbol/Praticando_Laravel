@@ -2,7 +2,7 @@
 
 @section('content')
     <h2 class="center">Lista de Exercicios</h2>
-    <div class="row">
+    <div class="row container">
         <nav>
             <div class="nav-wrapper blue darken-1">
                 <div class="col s12">
@@ -12,7 +12,7 @@
             </div>
         </nav>
     </div>
-        <div class="row">
+        <div class="row container">
             <form action="{{route('site.treino.exercicio.salvar', $treino->id)}}" method="post">
                 {{csrf_field()}}
                 <div class="input-field col s12">

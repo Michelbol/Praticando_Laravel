@@ -1,18 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2 class="center">Lista de Exercicios</h2>
-    <div class="row">
+    <h2 class="center">Lista de Exercicios para {{$treino->nome}}</h2>
+    <div class="row container">
         <nav>
             <div class="nav-wrapper blue darken-1">
                 <div class="col s12">
-                    <a class="breadcrumb">Lista de Exercicios</a>
+                    <a class="breadcrumb" href="{{route('site.alunos')}}">Lista de Alunos</a>
+                    <a class="breadcrumb" href="{{route('site.aluno.treino', $id_aluno)}}">Lista de Treinos</a>
+                    <a class="breadcrumb" >Lista de Exercícios</a>
                 </div>
             </div>
         </nav>
     </div>
-        <div class="row">
-            <form action="{{route('site.treino.exercicio.salvar', $treino->id)}}" method="post">
+        <div class="row container">
+            <form action="{{route('site.aluno.treino.exercicio.salvar', $treino->id)}}" method="post">
                 {{csrf_field()}}
                 <div class="input-field col s12">
                     <select name="exercicio_id">
@@ -42,7 +44,7 @@
                         <td>{{$exercicio->nome}}</td>
                         <td>{{$exercicio->musculo}}</td>
                         <td><a class="waves-effect waves-light btn blue darken-1" href="javascript: if(confirm('Remover esse registro?')){
-                    window.location.href='{{route('site.treino.exercicio.deletar', [$treino->id, $exercicio->id])}}'}">Remover</a></td>
+                    window.location.href='{{route('site.aluno.treino.exercicio.deletar', [$treino->id, $exercicio->id])}}'}">Remover</a></td>
                     </tr>
                 @endforeach
                 </tbody>

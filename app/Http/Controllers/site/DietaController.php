@@ -28,7 +28,8 @@ class DietaController extends Controller{
 
     public function editar($id){
         $dietas = Dieta::find($id);
-        return view('site.dieta.editar', compact('dietas'));
+        $itemdietas = $dietas->itemdieta()->get();
+        return view('site.dieta.editar', compact('dietas', 'itemdietas'));
     }
 
     public function atualizar(Request $request, $id){

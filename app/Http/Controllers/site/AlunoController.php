@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site;
 
 use App\Aluno;
+use App\Exercicio;
 use App\Treino;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -76,5 +77,29 @@ class AlunoController extends Controller{
 
         return redirect()->route('site.aluno.treino', $aluno->id);
     }
+    public function treinoExercicios($id_treino, $id_aluno){
+        $treino = Treino::find($id_treino);
+        $exercicios = Exercicio::all();
 
+        return view('site.aluno.exercicios', compact('exercicios', 'treino', 'id_aluno'));
+    }
+
+    public function salvarExercicio(Request $request, $id){
+        try{
+            $treino = Treino::find($id);
+            $dados = $request->all();
+            $exercicio = Exercicio::find($dados['exercicio_id']);
+            $treino->adicionarExercicio($exercicio);
+        }catch (\Exception $e){
+            \Session::flash('mensagem', ['msg'=>'Erro! Não foi possível adicionar o exercício!','class'=>'red white-text']);
+        }
+        return redirect()->back();
+    }
+    public function deletarExercicio($treino_id, $exercicio_id){
+        $treino = Treino::find($treino_id);
+        $exercicio = Exercicio::find($exercicio_id);
+        $treino->removerExercicio($exercicio);
+
+        return redirect()->back();
+    }
 }
