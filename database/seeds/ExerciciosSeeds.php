@@ -1,6 +1,8 @@
 <?php
 
+use App\Exercicio;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ExerciciosSeeds extends Seeder
 {
@@ -10,19 +12,23 @@ class ExerciciosSeeds extends Seeder
      * @return void
      */
     public function run(){
-        DB::table('exercicios')->insert([
-            'nome' => "Supino Reto",
-            'musculo' => "Peitoral maior",
-        ]);
-
-        DB::table('exercicios')->insert([
-            'nome' => "Leg Press",
-            'musculo' => "Quadríceps",
-        ]);
-
-        DB::table('exercicios')->insert([
-            'nome' => "Rosca Direta",
-            'musculo' => "Bíceps",
-        ]);
+        if(!Exercicio::where('nome', 'Supino Reto')->get()->count()) {
+            DB::table('exercicios')->insert([
+                'nome' => "Supino Reto",
+                'musculo' => "Peitoral maior",
+            ]);
+        }
+        if(!Exercicio::where('nome', 'Leg Press')->get()->count()) {
+            DB::table('exercicios')->insert([
+                'nome' => "Leg Press",
+                'musculo' => "Quadríceps",
+            ]);
+        }
+        if(!Exercicio::where('nome', 'Rosca Direta')->get()->count()) {
+            DB::table('exercicios')->insert([
+                'nome' => "Rosca Direta",
+                'musculo' => "Bíceps",
+            ]);
+        }
     }
 }
