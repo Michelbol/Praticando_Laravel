@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.site.app')
 
 @section('content')
     <h2 class="center">Editar Dieta</h2>
@@ -15,17 +15,17 @@
     <div class="row container">
         <form class="col s12" action="{{route('site.dieta.atualizar', $dietas->id)}}" method="post">
             {{csrf_field()}}
-            <button class="waves-effect waves-light btn right">Alterar</button>
             @include('site.dieta._form')
+            <button class="waves-effect waves-light btn left">Salvar Alterações</button>
         </form>
-        <div class="row">
-            <a class="waves-effect waves-light btn" href="{{route('site.dieta.refeicoes', [$dietas->id, "segunda"])}}">Segunda</a>
-            <a class="waves-effect waves-light btn" href="{{route('site.dieta.refeicoes', [$dietas->id, "terça"])}}">Terça</a>
-            <a class="waves-effect waves-light btn" href="{{route('site.dieta.refeicoes', [$dietas->id, "quarta"])}}">Quarta</a>
-            <a class="waves-effect waves-light btn" href="{{route('site.dieta.refeicoes', [$dietas->id, "quinta"])}}">Quinta</a>
-            <a class="waves-effect waves-light btn" href="{{route('site.dieta.refeicoes', [$dietas->id, "sexta"])}}">Sexta</a>
-            <a class="waves-effect waves-light btn" href="{{route('site.dieta.refeicoes', [$dietas->id, "sabado"])}}">Sabado</a>
-            <a class="waves-effect waves-light btn" href="{{route('site.dieta.refeicoes', [$dietas->id, "domingo"])}}">Domingo</a>
-        </div>
+        {{--<div class="row">--}}
+            {{--<a class="waves-effect waves-light btn" href="{{route('site.dieta.refeicoes', [$dietas->id, "segunda"])}}">Segunda</a>--}}
+            {{--<a class="waves-effect waves-light btn" href="{{route('site.dieta.refeicoes', [$dietas->id, "terça"])}}">Terça</a>--}}
+            {{--<a class="waves-effect waves-light btn" href="{{route('site.dieta.refeicoes', [$dietas->id, "quarta"])}}">Quarta</a>--}}
+            {{--<a class="waves-effect waves-light btn" href="{{route('site.dieta.refeicoes', [$dietas->id, "quinta"])}}">Quinta</a>--}}
+            {{--<a class="waves-effect waves-light btn" href="{{route('site.dieta.refeicoes', [$dietas->id, "sexta"])}}">Sexta</a>--}}
+            {{--<a class="waves-effect waves-light btn" href="{{route('site.dieta.refeicoes', [$dietas->id, "sabado"])}}">Sabado</a>--}}
+            {{--<a class="waves-effect waves-light btn" href="{{route('site.dieta.refeicoes', [$dietas->id, "domingo"])}}">Domingo</a>--}}
+        {{--</div>--}}
     </div>
 @endsection

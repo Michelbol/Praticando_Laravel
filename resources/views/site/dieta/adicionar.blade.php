@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.site.app')
 
 @section('content')
     <h2 class="center">Adicionar Dieta</h2>

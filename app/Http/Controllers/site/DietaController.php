@@ -28,8 +28,7 @@ class DietaController extends Controller{
 
     public function editar($id){
         $dietas = Dieta::find($id);
-        $itemdietas = $dietas->itemdieta()->get();
-        return view('site.dieta.editar', compact('dietas', 'itemdietas'));
+        return view('site.dieta.editar', compact('dietas'));
     }
 
     public function atualizar(Request $request, $id){
@@ -41,6 +40,12 @@ class DietaController extends Controller{
         $dietas->update();
 
         return redirect()->route('site.dietas');
+    }
+
+    public function refeicao($id){
+        $dietas = Dieta::find($id);
+        $itemdietas = $dietas->itemdieta()->get();
+        return view('site.dieta.refeicoes', compact('dietas', 'itemdietas'));
     }
 
     public function deletar($id){

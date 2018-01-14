@@ -16,7 +16,7 @@
 
 </head>
 <body id="app-layout">
-    @include('layouts._nav')
+    @include('layouts.site._nav')
     <main>
         @if(Session::has('mensagem'))
             <div class="container">
@@ -32,7 +32,7 @@
         @endif
         @yield('content')
     </main>
-    @include('layouts._footer')
+    @include('layouts.site._footer')
     <!-- Scripts -->
     <script src="{{asset('lib/jquery/dist/jquery.js')}}"></script>
     <script src="{{asset('lib/materialize/dist/js/materialize.js')}}"></script>

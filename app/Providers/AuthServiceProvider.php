@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Permissao;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -24,7 +25,15 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        //
+        $permissaos = Permissao::all();
+        foreach($permissaos as $permissao){
+            Gate::define($permissao->nome,function($user) use($permissao){
+                if($user->email == 'admin'){
+                    return true;
+                }
+//                return $user->permissaos->contains('nome', $permissao->nome);
+                return false;
+            });
+        }
     }
 }

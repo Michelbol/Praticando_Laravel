@@ -15,12 +15,12 @@ Route::get('/',['as'=>'site.login', function(){
     return view('site.login.index');
 }]);
 
-Route::post('/',['as'=>'site.login', 'uses'=>'site\UsuarioController@login']);
+Route::post('/',['as'=>'site.login', 'uses'=>'UsuarioController@login']);
 
 //------------------------------------------------------INICIO LOGADO------------------------------------------------------------------------
 Route::group(['middleware'=>'auth'], function(){
 
-    Route::get('/site/sair',['as'=>'site.sair', 'uses'=>'site\UsuarioController@sair']);
+    Route::get('/site/sair',['as'=>'site.sair', 'uses'=>'UsuarioController@sair']);
 
     Route::get('/principal',['as'=>'site.principal', function () {
         return view('site.site');
@@ -69,6 +69,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/dieta/adicionar', ['as' => 'site.dieta.adicionar', 'uses' =>'site\DietaController@adicionar']);
     Route::post('/dieta/salvar', ['as' => 'site.dieta.salvar', 'uses' =>'site\DietaController@salvar']);
     Route::get('/dieta/editar/{id}', ['as' => 'site.dieta.editar', 'uses' =>'site\DietaController@editar']);
+    Route::get('/dieta/refeicao/{id}', ['as' => 'site.dieta.refeicao', 'uses' =>'site\DietaController@refeicao']);
     Route::post('/dieta/atualizar/{id}', ['as' => 'site.dieta.atualizar', 'uses' =>'site\DietaController@atualizar']);
     Route::get('/dieta/deletar/{id}', ['as' => 'site.dieta.deletar', 'uses' =>'site\DietaController@deletar']);
 //------------------------------------------------------FIM DIETA------------------------------------------------------------------------
@@ -81,5 +82,19 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/dieta/refeicoes/deletar/{id}', ['as' => 'site.dieta.refeicoes.deletar', 'uses' =>'site\ItemDietaController@deletar']);
     //------------------------------------------------------FIM ITEMDIETA------------------------------------------------------------------------
 
+});
+
+Route::group(['middleware'=>'auth-painel'], function(){
+    Route::get('/admin',['as'=>'admin.home', function () {
+        return view('admin.site');
+    }]);
+    //------------------------------------------------------INICIO USUÁRIO-------------------------------------------------------------------------
+    Route::get('/usuarios', ['as' => 'admin.usuarios', 'uses' =>'UsuarioController@index']);
+    Route::get('/usuario/adicionar', ['as' => 'admin.usuario.adicionar', 'uses' =>'UsuarioController@adicionar']);
+    Route::post('/usuario/salvar', ['as' => 'admin.usuario.salvar', 'uses' =>'UsuarioController@salvar']);
+    Route::get('/usuario/editar/{id}', ['as' => 'admin.usuario.editar', 'uses' =>'UsuarioController@editar']);
+    Route::get('/usuario/deletar/{id}', ['as' => 'admin.usuario.deletar', 'uses' =>'UsuarioController@deletar']);
+    Route::post('/usuario/atualizar/{id}', ['as' => 'admin.usuario.atualizar', 'uses' =>'UsuarioController@atualizar']);
+//------------------------------------------------------FIM USUÁRIO----------------------------------------------------------------------------
 });
 //------------------------------------------------------FIM LOGADO---------------------------------------------------------------------------

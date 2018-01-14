@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.site.app')
 
 @section('content')
     <div class="container">
@@ -9,7 +9,7 @@
                     <div class="nav-wrapper blue darken-1">
                         <div class="col s12">
                             <a class="breadcrumb" href="{{route('site.dietas')}}">Lista de Dietas</a>
-                            <a class="breadcrumb" href="{{route('site.dieta.editar', $registro->id)}}">Editar Dieta</a>
+                            <a class="breadcrumb" href="{{route('site.dieta.refeicao', $registro->id)}}">Refeição Dieta</a>
                             <a class="breadcrumb">Lista de Refeições</a>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.site.app')
 
 @section('content')
     <h2 class="center">Lista de Treinos para {{$aluno->nome}}</h2>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.site.app')
 
 @section('content')
     <div class="container">
@@ -9,7 +9,7 @@
                         <span class="card-title">Alunos</span>
                     </div>
                     <div class="card-action">
-                        <a href="{{route('site.alunos')}}">Clique aqui</a>
+                        <a href="{{Auth::user()->can('Alunos\Adicionar') ? route('site.alunos') : ''}}" class="disabled">Clique aqui</a>
                     </div>
                 </div>
             </div>
