@@ -31,8 +31,7 @@ class AuthServiceProvider extends ServiceProvider
                 if($user->email == 'admin'){
                     return true;
                 }
-//                return $user->permissaos->contains('nome', $permissao->nome);
-                return false;
+                return $user->permissaos->contains('nome', $permissao->nome);
             });
         }
     }

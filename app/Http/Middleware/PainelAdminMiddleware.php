@@ -18,11 +18,11 @@ class PainelAdminMiddleware
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check() && Auth::user()->can('Painel Administrativo')) {
-//           echo('Tem permissão!');
+            return $next($request);
+        }else if(Auth::guard($guard)->check()){
+            return redirect('/principal');
         }else{
-            return redirect('/');
+            return redirect('/admin');
         }
-
-        return $next($request);
     }
 }

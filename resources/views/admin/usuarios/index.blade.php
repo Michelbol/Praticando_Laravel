@@ -1,4 +1,4 @@
-@extends('layouts.site.app')
+@extends('layouts.admin.app')
 
 @section('content')
     <div class="container">
@@ -29,6 +29,7 @@
                         <td>{{str_limit($usuario->email,15)}}</td>
                         <td>
                             <a class="waves-effect waves-light btn" href="{{route('admin.usuario.editar', [$usuario->id])}}}">Editar</a>
+                            <a class="waves-effect waves-light btn orange darken-1" href="{{route('admin.usuario.permissoes', [$usuario->id])}}}" {{$usuario->email == 'admin' ? 'disabled' : ''}}>Permissões</a>
                             <a class="waves-effect waves-light btn blue darken-1" href="javascript: if(confirm('Deletar esse registro?')){
                     window.location.href='{{route('admin.usuario.deletar', [$usuario->id])}}'}">Deletar</a>
                         </td>

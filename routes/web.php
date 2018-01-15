@@ -11,10 +11,22 @@
 |
 */
 
-Route::get('/',['as'=>'site.login', function(){
+use Illuminate\Support\Facades\Auth;
+
+Route::get('/',['as'=>'login', function(){
+    if(Auth::check()){
+        return redirect()->route('site.principal');
+    }
     return view('site.login.index');
 }]);
+Route::get('/admin',['as'=>'admin.login', function () {
+    if(Auth::check()){
+        return redirect()->route('admin.principal');
+    }
+    return view('admin.login.index');
+}]);
 
+Route::post('/admin',['as'=>'admin.login', 'uses'=>'UsuarioController@loginAdmin']);
 Route::post('/',['as'=>'site.login', 'uses'=>'UsuarioController@login']);
 
 //------------------------------------------------------INICIO LOGADO------------------------------------------------------------------------
@@ -85,16 +97,20 @@ Route::group(['middleware'=>'auth'], function(){
 });
 
 Route::group(['middleware'=>'auth-painel'], function(){
-    Route::get('/admin',['as'=>'admin.home', function () {
+    Route::get('/admin/principal',['as'=>'admin.principal', function () {
         return view('admin.site');
     }]);
+    Route::get('/admin/sair',['as'=>'admin.sair', 'uses'=>'UsuarioController@sairAdmin']);
     //------------------------------------------------------INICIO USUÁRIO-------------------------------------------------------------------------
-    Route::get('/usuarios', ['as' => 'admin.usuarios', 'uses' =>'UsuarioController@index']);
-    Route::get('/usuario/adicionar', ['as' => 'admin.usuario.adicionar', 'uses' =>'UsuarioController@adicionar']);
-    Route::post('/usuario/salvar', ['as' => 'admin.usuario.salvar', 'uses' =>'UsuarioController@salvar']);
-    Route::get('/usuario/editar/{id}', ['as' => 'admin.usuario.editar', 'uses' =>'UsuarioController@editar']);
-    Route::get('/usuario/deletar/{id}', ['as' => 'admin.usuario.deletar', 'uses' =>'UsuarioController@deletar']);
-    Route::post('/usuario/atualizar/{id}', ['as' => 'admin.usuario.atualizar', 'uses' =>'UsuarioController@atualizar']);
+    Route::get('admin/usuarios', ['as' => 'admin.usuarios', 'uses' =>'UsuarioController@index']);
+    Route::get('admin/usuario/adicionar', ['as' => 'admin.usuario.adicionar', 'uses' =>'UsuarioController@adicionar']);
+    Route::get('admin/usuario/permissoes/{id}', ['as' => 'admin.usuario.permissoes', 'uses' =>'UsuarioController@permissoes']);
+    Route::post('admin/usuario/permissoes/salvar/{id}', ['as' => 'admin.usuario.permissoes.salvar', 'uses' =>'UsuarioController@permissoessalvar']);
+    Route::get('admin/usuario/permissoes/remover/{id}', ['as' => 'admin.usuario.permissoes.remover', 'uses' =>'UsuarioController@permissoesremover']);
+    Route::post('admin/usuario/salvar', ['as' => 'admin.usuario.salvar', 'uses' =>'UsuarioController@salvar']);
+    Route::get('admin/usuario/editar/{id}', ['as' => 'admin.usuario.editar', 'uses' =>'UsuarioController@editar']);
+    Route::get('admin/usuario/deletar/{id}', ['as' => 'admin.usuario.deletar', 'uses' =>'UsuarioController@deletar']);
+    Route::post('admin/usuario/atualizar/{id}', ['as' => 'admin.usuario.atualizar', 'uses' =>'UsuarioController@atualizar']);
 //------------------------------------------------------FIM USUÁRIO----------------------------------------------------------------------------
 });
 //------------------------------------------------------FIM LOGADO---------------------------------------------------------------------------

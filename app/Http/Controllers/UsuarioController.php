@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Aluno;
+use App\Permissao;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UsuarioController extends Controller{
+
     public function login(Request $request){
         $dados = $request->all();
 
@@ -20,9 +22,25 @@ class UsuarioController extends Controller{
         \Session::flash('mensagem', ['msg'=>'Erro! Confira seus dados!','class'=>'red white-text']);
         return redirect()->route('site.login');
     }
+
+    public function loginAdmin(Request $request){
+        $dados = $request->all();
+
+        if(Auth::attempt(['email'=>$dados['email'], 'password'=>$dados['password']])){
+            \Session::flash('mensagem', ['msg'=>'Login realizado com sucesso!','class'=>'green white-text']);
+            return redirect()->route('admin.principal');
+        }
+        \Session::flash('mensagem', ['msg'=>'Erro! Confira seus dados!','class'=>'red white-text']);
+        return redirect()->route('admin.login');
+    }
+
     public function sair(){
         Auth::logout();
         return redirect()->route('site.login');
+    }
+    public function sairAdmin(){
+        Auth::logout();
+        return redirect()->route('admin.login');
     }
 
     public function index(){
@@ -45,7 +63,7 @@ class UsuarioController extends Controller{
             ]);
             DB::connection()->getPdo()->commit();
         }catch (\Exception $e){
-
+            return "Ocorreu um erro: ".$e->getMessage();
         }
         return redirect()->route('admin.usuarios');
     }
@@ -74,4 +92,29 @@ class UsuarioController extends Controller{
         return redirect()->route('admin.usuarios');
     }
 
+    public function permissoes($id){
+        $user = User::find($id);
+        $permissoes = Permissao::all();
+        return view('admin.usuarios.permissoes', compact('user', 'permissoes'));
+    }
+    public function permissoessalvar(Request $request, $id){
+        $dados = $request->all();
+//        dd($dados);
+        try{
+            DB::connection()->getPdo()->beginTransaction();
+            $user = User::find($id);
+            $permissoes = Permissao::all();
+            foreach ($permissoes as $permissao) {
+                if(isset($dados[$permissao->id]) && !($user->permissaos->contains('nome', $permissao->nome))){
+                    $user->permissaos()->attach($permissao->id);
+                }else if(!(isset($dados[$permissao->id])) && $user->permissaos->contains('nome', $permissao->nome)){
+                    $user->permissaos()->detach($permissao->id);
+                }
+            }
+            DB::connection()->getPdo()->commit();
+        }catch (\Exception $e){
+            return "Ocorreu um erro: ".$e->getMessage();
+        }
+        return redirect()->route('admin.usuarios');
+    }
 }
