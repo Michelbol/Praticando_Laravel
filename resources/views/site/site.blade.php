@@ -5,6 +5,8 @@
         <div class="row">
             <div class="col s12 m6">
                 <span>{{Auth::user()}}</span>
+                <br>
+                <span>Pode? {{Auth::user()->can('Alunos\Adicionar')}}</span>
                 <div class="card blue darken-1">
                     <div class="card-content white-text">
                         <span class="card-title">Alunos</span>
