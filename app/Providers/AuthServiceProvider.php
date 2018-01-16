@@ -27,8 +27,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
         $permissaos = Permissao::all();
         foreach($permissaos as $permissao){
-            Gate::define($permissao->nome,function($user) use($permissao){
-                if($user->email == 'admin'){
+           Gate::define($permissao->nome,function($user) use($permissao){
+              if($user->email == 'admin'){
                     return true;
                 }
                 return $user->permissaos->contains('nome', $permissao->nome);
