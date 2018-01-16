@@ -3,12 +3,15 @@
         <div class="row">
             <div class="col l6 s12">
                 <h5 class="white-text">Gerenciado de Treino</h5>
-                <p>Sistema de Administração</p>
+                <p>Otimizando seu treino</p>
             </div>
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Links</h5>
                 <ul>
-                    <li><a class="grey-text text-lighten-3" href="{{route('site.principal')}}">Início</a></li>
+                    <li><a class="grey-text text-lighten-3" href="{{route('site.principal')}}">Site</a></li>
+                    @can('Painel Administrativo')
+                    <li><a class="grey-text text-lighten-3" href="{{route('admin.principal')}}">Painel Administrativo</a></li>
+                    @endcan
                 </ul>
             </div>
         </div>

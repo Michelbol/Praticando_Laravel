@@ -1,7 +1,7 @@
 <nav>
     <div class="nav-wrapper blue">
         <div class="container">
-            <a class="brand-logo" href="{{ route('site.principal') }}">SisAdmin</a>
+            <a class="brand-logo" href="{{ route('site.principal') }}">Gerenciador Treino</a>
             <ul class="right hide-on-med-and-down">
                 @if(Auth::guest())
                     <li><a href="{{ route('site.login') }}">Login</a></li>
