@@ -13,7 +13,7 @@
                     </div>
                 </nav>
             </div>
-                <a class="waves-effect waves-light btn right" href="{{route('site.exercicio.adicionar')}}">Adicionar</a>
+                <a class="waves-effect waves-light btn right" href="{{route('site.exercicio.adicionar')}}" {{Auth::user()->can('Exercicios\Adicionar') ? '' : 'disabled'}}>Adicionar</a>
             <table>
                 <thead>
                 <tr>
@@ -28,10 +28,10 @@
                         <td>{{$exercicio->nome}}</td>
                         <td>{{$exercicio->musculo}}</td>
                         <td>
-                            <a class="waves-effect waves-light btn" href="{{route('site.exercicio.editar', $exercicio)}}}">Editar</a>
+                            <a class="waves-effect waves-light btn" href="{{route('site.exercicio.editar', $exercicio)}}}" {{Auth::user()->can('Exercicios\Editar') ? '' : 'disabled'}}>Editar</a>
 
                             <a class="waves-effect waves-light btn blue darken-1" href="javascript: if(confirm('Deletar esse registro?')){
-                    window.location.href='{{route('site.exercicio.deletar', $exercicio->id)}}'}">Deletar</a>
+                    window.location.href='{{route('site.exercicio.deletar', $exercicio->id)}}'}" {{Auth::user()->can('Exercicios\Deletar') ? '' : 'disabled'}}>Deletar</a>
                         </td>
                     </tr>
                 @endforeach

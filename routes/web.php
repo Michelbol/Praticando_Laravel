@@ -74,12 +74,12 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/treino/exercicio/deletar/{treino_id}/{exercicio_id}', ['as' => 'site.treino.exercicio.deletar', 'uses' =>'site\TreinoController@deletarExercicio'])->middleware('can:Treinos\Remover');
 //------------------------------------------------------FIM TREINO/EXERCICIO------------------------------------------------------------------
 //------------------------------------------------------INICIO EXERCICIO----------------------------------------------------------------------
-    Route::get('/exercicios', ['as' => 'site.exercicios', 'uses' =>'site\ExercicioController@index']);
-    Route::get('/exercicio/adicionar', ['as' => 'site.exercicio.adicionar', 'uses' =>'site\ExercicioController@adicionar']);
-    Route::post('/exercicio/salvar', ['as' => 'site.exercicio.salvar', 'uses' =>'site\ExercicioController@salvar']);
-    Route::get('/exercicio/editar/{id}', ['as' => 'site.exercicio.editar', 'uses' =>'site\ExercicioController@editar']);
-    Route::post('/exercicio/atualizar/{id}', ['as' => 'site.exercicio.atualizar', 'uses' =>'site\ExercicioController@atualizar']);
-    Route::get('/exercicio/deletar/{id}', ['as' => 'site.exercicio.deletar', 'uses' =>'site\ExercicioController@deletar']);
+    Route::get('/exercicios', ['as' => 'site.exercicios', 'uses' =>'site\ExercicioController@index'])->middleware('can:Exercicios');
+    Route::get('/exercicio/adicionar', ['as' => 'site.exercicio.adicionar', 'uses' =>'site\ExercicioController@adicionar'])->middleware('can:Exercicios\Adicionar');
+    Route::post('/exercicio/salvar', ['as' => 'site.exercicio.salvar', 'uses' =>'site\ExercicioController@salvar'])->middleware('can:Exercicios\Adicionar');
+    Route::get('/exercicio/editar/{id}', ['as' => 'site.exercicio.editar', 'uses' =>'site\ExercicioController@editar'])->middleware('can:Exercicios\Editar');
+    Route::post('/exercicio/atualizar/{id}', ['as' => 'site.exercicio.atualizar', 'uses' =>'site\ExercicioController@atualizar'])->middleware('can:Exercicios\Editar');
+    Route::get('/exercicio/deletar/{id}', ['as' => 'site.exercicio.deletar', 'uses' =>'site\ExercicioController@deletar'])->middleware('can:Exercicios\Deletar');
 //------------------------------------------------------FIM EXERCICIO------------------------------------------------------------------------
 //------------------------------------------------------INICIO DIETA----------------------------------------------------------------------
     Route::get('/dietas', ['as' => 'site.dietas', 'uses' =>'site\DietaController@index']);
