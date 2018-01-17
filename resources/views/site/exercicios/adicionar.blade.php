@@ -6,6 +6,7 @@
         <nav>
             <div class="nav-wrapper blue darken-1">
                 <div class="col s12">
+                    <a class="breadcrumb" href="{{route('site.principal')}}">Home</a>
                     <a class="breadcrumb" href="{{route('site.exercicios')}}">Lista de Exercicios</a>
                     <a class="breadcrumb">Adicionar Exercicios</a>
                 </div>

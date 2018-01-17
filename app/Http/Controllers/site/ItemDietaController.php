@@ -17,8 +17,7 @@ class ItemDietaController extends Controller
 
     public function adicionar($id, $diasemana){
         $registro = Dieta::find($id);
-        $itemdieta = $registro->itemDieta()->whereDiasemana($diasemana)->get();
-        return view('site.dieta.itemdieta.adicionar', compact('registro', 'itemdieta', 'diasemana'));
+        return view('site.dieta.itemdieta.adicionar', compact('registro', 'diasemana'));
     }
     public function salvar(Request $request){
         $dados = $request->all();
@@ -34,26 +33,25 @@ class ItemDietaController extends Controller
         return redirect()->route('site.dieta.refeicoes', [$itemdieta->dieta_id, $itemdieta->diasemana]);
     }
 
-//    public function editar($id){
-//        $dietas = Dieta::find($id);
-//        $itemdietas = $dietas->itemdieta()->get();
-//        return view('site.dieta.editar', compact('dietas', 'itemdietas'));
-//    }
-//
-//    public function atualizar(Request $request, $id){
-//        $dados = $request->all();
-//        $dietas = Dieta::find($id);
-//
-//        $dietas->nome = $dados['nome'];
-//
-//        $dietas->update();
-//
-//        return redirect()->route('site.dietas');
-//    }
-//
-//    public function deletar($id){
-//        Dieta::find($id)->delete();
-//        return redirect()->route('site.dietas');
-//    }
+    public function editar($id){
+        $itemdieta = ItemDieta::find($id);
+        return view('site.dieta.itemdieta.editar', compact('itemdieta'));
+    }
+
+    public function atualizar(Request $request, $id){
+        $dados = $request->all();
+        $itemdieta = ItemDieta::find($id);
+        $itemdieta->update($dados);
+
+        return redirect()->route('site.dieta.refeicoes', [$itemdieta->dieta_id, $itemdieta->diasemana]);
+    }
+
+    public function deletar($id){
+        $itemdieta = ItemDieta::find($id);
+        $dieta_id = $itemdieta->dieta_id;
+        $diasemana = $itemdieta->diasemana;
+        $itemdieta->delete();
+        return redirect()->route('site.dieta.refeicoes', [$dieta_id, $diasemana]);
+    }
 
 }

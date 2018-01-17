@@ -82,21 +82,21 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/exercicio/deletar/{id}', ['as' => 'site.exercicio.deletar', 'uses' =>'site\ExercicioController@deletar'])->middleware('can:Exercicios\Deletar');
 //------------------------------------------------------FIM EXERCICIO------------------------------------------------------------------------
 //------------------------------------------------------INICIO DIETA----------------------------------------------------------------------
-    Route::get('/dietas', ['as' => 'site.dietas', 'uses' =>'site\DietaController@index']);
-    Route::get('/dieta/adicionar', ['as' => 'site.dieta.adicionar', 'uses' =>'site\DietaController@adicionar']);
-    Route::post('/dieta/salvar', ['as' => 'site.dieta.salvar', 'uses' =>'site\DietaController@salvar']);
-    Route::get('/dieta/editar/{id}', ['as' => 'site.dieta.editar', 'uses' =>'site\DietaController@editar']);
-    Route::get('/dieta/refeicao/{id}', ['as' => 'site.dieta.refeicao', 'uses' =>'site\DietaController@refeicao']);
-    Route::post('/dieta/atualizar/{id}', ['as' => 'site.dieta.atualizar', 'uses' =>'site\DietaController@atualizar']);
-    Route::get('/dieta/deletar/{id}', ['as' => 'site.dieta.deletar', 'uses' =>'site\DietaController@deletar']);
+    Route::get('/dietas', ['as' => 'site.dietas', 'uses' =>'site\DietaController@index'])->middleware('can:Dietas');
+    Route::get('/dieta/adicionar', ['as' => 'site.dieta.adicionar', 'uses' =>'site\DietaController@adicionar'])->middleware('can:Dietas\Adicionar');
+    Route::post('/dieta/salvar', ['as' => 'site.dieta.salvar', 'uses' =>'site\DietaController@salvar'])->middleware('can:Dietas\Adicionar');
+    Route::get('/dieta/editar/{id}', ['as' => 'site.dieta.editar', 'uses' =>'site\DietaController@editar'])->middleware('can:Dietas\Editar');
+    Route::get('/dieta/refeicao/{id}', ['as' => 'site.dieta.refeicao', 'uses' =>'site\DietaController@refeicao'])->middleware('can:Dietas\Refeicoes');
+    Route::post('/dieta/atualizar/{id}', ['as' => 'site.dieta.atualizar', 'uses' =>'site\DietaController@atualizar'])->middleware('can:Dietas\Adicionar');
+    Route::get('/dieta/deletar/{id}', ['as' => 'site.dieta.deletar', 'uses' =>'site\DietaController@deletar'])->middleware('can:Dietas\Deletar');
 //------------------------------------------------------FIM DIETA------------------------------------------------------------------------
 //------------------------------------------------------INICIO ITEMDIETA------------------------------------------------------------------------
-    Route::get('/dieta/refeicoes/{id}/{diasemana}', ['as' => 'site.dieta.refeicoes', 'uses' =>'site\ItemDietaController@index']);
-    Route::get('/dieta/refeicoes/adicionar/{id}/{diasemana}', ['as' => 'site.dieta.refeicoes.adicionar', 'uses' =>'site\ItemDietaController@adicionar']);
-    Route::post('/dieta/refeicoes/salvar', ['as' => 'site.dieta.refeicoes.salvar', 'uses' =>'site\ItemDietaController@salvar']);
-    Route::get('/dieta/refeicoes/editar/{id}', ['as' => 'site.dieta.refeicoes.editar', 'uses' =>'site\ItemDietaController@editar']);
-    Route::post('/dieta/refeicoes/atualizar/{id}', ['as' => 'site.dieta.refeicoes.atualizar', 'uses' =>'site\ItemDietaController@atualizar']);
-    Route::get('/dieta/refeicoes/deletar/{id}', ['as' => 'site.dieta.refeicoes.deletar', 'uses' =>'site\ItemDietaController@deletar']);
+    Route::get('/dieta/refeicoes/{id}/{diasemana}', ['as' => 'site.dieta.refeicoes', 'uses' =>'site\ItemDietaController@index'])->middleware('can:Dietas\Refeicoes');
+    Route::get('/dieta/refeicoes/adicionar/{id}/{diasemana}', ['as' => 'site.dieta.refeicoes.adicionar', 'uses' =>'site\ItemDietaController@adicionar'])->middleware('can:Dietas\Refeicoes\Adicionar');
+    Route::post('/dieta/refeicoes/salvar', ['as' => 'site.dieta.refeicoes.salvar', 'uses' =>'site\ItemDietaController@salvar'])->middleware('can:Dietas\Refeicoes\Adicionar');
+    Route::get('/dieta/refeicao/editar/{id_itemdieta}', ['as' => 'site.dieta.refeicoes.editar', 'uses' =>'site\ItemDietaController@editar'])->middleware('can:Dietas\Refeicoes\Editar');
+    Route::post('/dieta/refeicao/atualizar/{id}', ['as' => 'site.dieta.refeicoes.atualizar', 'uses' =>'site\ItemDietaController@atualizar'])->middleware('can:Dietas\Refeicoes\Editar');
+    Route::get('/dieta/refeicao/deletar/{id}', ['as' => 'site.dieta.refeicoes.deletar', 'uses' =>'site\ItemDietaController@deletar'])->middleware('can:Dietas\Refeicoes\Deletar');
     //------------------------------------------------------FIM ITEMDIETA------------------------------------------------------------------------
 
 });
