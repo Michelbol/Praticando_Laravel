@@ -14,6 +14,7 @@
                     @endcan
                 </ul>
             </div>
+            @if(!Auth::guest())
             <div class="col 14 s3">
                 <h5 class="white-text">Menu</h5>
                 <ul>
@@ -31,6 +32,7 @@
                     @endcan
                 </ul>
             </div>
+            @endif
         </div>
     </div>
     <div class="footer-copyright">
