@@ -12,7 +12,7 @@
                 </div>
             </nav>
         </div>
-            <a class="waves-effect waves-light btn right" href="{{route('site.treino.adicionar')}}">Adicionar</a>
+            <a class="waves-effect waves-light btn right" href="{{route('site.treino.adicionar')}}" {{Auth::user()->can('Treinos\Adicionar') ? '' : 'disabled'}}>Adicionar</a>
         <div class="row">
             <table>
                 <thead>
@@ -28,10 +28,10 @@
                         <td>{{str_limit($treino->nome, 20)}}</td>
                         <td>{{str_limit($treino->descricao, 50)}}</td>
                         <td>
-                            <a class="waves-effect waves-light btn" href="{{route('site.treino.editar', $treino)}}}">Editar</a>
-                            <a class="waves-effect waves-light btn red" href="{{route('site.treino.exercicio', $treino)}}}">Exercícios</a>
+                            <a class="waves-effect waves-light btn" href="{{route('site.treino.editar', $treino)}}}" {{Auth::user()->can('Treinos\Editar') ? '' : 'disabled'}}>Editar</a>
+                            <a class="waves-effect waves-light btn red" href="{{route('site.treino.exercicio', $treino)}}}" {{Auth::user()->can('Treinos\Exercicios') ? '' : 'disabled'}}>Exercícios</a>
                             <a class="waves-effect waves-light btn blue darken-1" href="javascript: if(confirm('Deletar esse registro?')){
-                    window.location.href='{{route('site.treino.deletar', $treino->id)}}'}">Deletar</a>
+                    window.location.href='{{route('site.treino.deletar', $treino->id)}}'}" {{Auth::user()->can('Treinos\Deletar') ? '' : 'disabled'}}>Deletar</a>
                         </td>
 
                     </tr>

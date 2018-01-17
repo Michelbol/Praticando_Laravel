@@ -61,17 +61,17 @@ Route::group(['middleware'=>'auth'], function(){
                     //---------------------FIM TREINO/EXERCÍCIOS---------------//
 //------------------------------------------------------FIM ALUNO/TREINO---------------------------------------------------------------------
 //------------------------------------------------------INICIO TREINO------------------------------------------------------------------------
-    Route::get('/treinos', ['as' => 'site.treinos', 'uses' =>'site\TreinoController@index']);
-    Route::get('/treino/adicionar', ['as' => 'site.treino.adicionar', 'uses' =>'site\TreinoController@adicionar']);
-    Route::post('/treino/salvar', ['as' => 'site.treino.salvar', 'uses' =>'site\TreinoController@salvar']);
-    Route::get('/treino/editar/{id}', ['as' => 'site.treino.editar', 'uses' =>'site\TreinoController@editar']);
-    Route::post('/treino/atualizar/{id}', ['as' => 'site.treino.atualizar', 'uses' =>'site\TreinoController@atualizar']);
-    Route::get('/treino/deletar/{id}', ['as' => 'site.treino.deletar', 'uses' =>'site\TreinoController@deletar']);
+    Route::get('/treinos', ['as' => 'site.treinos', 'uses' =>'site\TreinoController@index'])->middleware('can:Treinos');
+    Route::get('/treino/adicionar', ['as' => 'site.treino.adicionar', 'uses' =>'site\TreinoController@adicionar'])->middleware('can:Treinos\Adicionar');
+    Route::post('/treino/salvar', ['as' => 'site.treino.salvar', 'uses' =>'site\TreinoController@salvar'])->middleware('can:Treinos\Adicionar');
+    Route::get('/treino/editar/{id}', ['as' => 'site.treino.editar', 'uses' =>'site\TreinoController@editar'])->middleware('can:Treinos\Editar');
+    Route::post('/treino/atualizar/{id}', ['as' => 'site.treino.atualizar', 'uses' =>'site\TreinoController@atualizar'])->middleware('can:Treinos\Editar');
+    Route::get('/treino/deletar/{id}', ['as' => 'site.treino.deletar', 'uses' =>'site\TreinoController@deletar'])->middleware('can:Treinos\Deletar');
 //------------------------------------------------------FIM TREINO----------------------------------------------------------------------------
 //------------------------------------------------------INICIO TREINO/EXERCICIO---------------------------------------------------------------
-    Route::get('/treino/exercicio/{id}', ['as' => 'site.treino.exercicio', 'uses' =>'site\TreinoController@exercicio']);
-    Route::post('/treino/exercicio/salvar/{id}', ['as' => 'site.treino.exercicio.salvar', 'uses' =>'site\TreinoController@salvarExercicio']);
-    Route::get('/treino/exercicio/deletar/{treino_id}/{exercicio_id}', ['as' => 'site.treino.exercicio.deletar', 'uses' =>'site\TreinoController@deletarExercicio']);
+    Route::get('/treino/exercicio/{id}', ['as' => 'site.treino.exercicio', 'uses' =>'site\TreinoController@exercicio'])->middleware('can:Treinos\Exercicios');
+    Route::post('/treino/exercicio/salvar/{id}', ['as' => 'site.treino.exercicio.salvar', 'uses' =>'site\TreinoController@salvarExercicio'])->middleware('can:Treinos\Exercicios\Adicionar');
+    Route::get('/treino/exercicio/deletar/{treino_id}/{exercicio_id}', ['as' => 'site.treino.exercicio.deletar', 'uses' =>'site\TreinoController@deletarExercicio'])->middleware('can:Treinos\Remover');
 //------------------------------------------------------FIM TREINO/EXERCICIO------------------------------------------------------------------
 //------------------------------------------------------INICIO EXERCICIO----------------------------------------------------------------------
     Route::get('/exercicios', ['as' => 'site.exercicios', 'uses' =>'site\ExercicioController@index']);

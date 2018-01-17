@@ -9,7 +9,9 @@
                         <span class="card-title">Alunos</span>
                     </div>
                     <div class="card-action">
-                        <a href="{{Auth::user()->can('Alunos') ? route('site.alunos') : ''}}" class="disabled">Clique aqui</a>
+                        @can('Alunos')
+                        <a href="{{route('site.alunos')}}">Clique aqui</a>
+                        @endcan
                     </div>
                 </div>
             </div>
@@ -19,7 +21,9 @@
                         <span class="card-title">Treinos</span>
                     </div>
                     <div class="card-action">
+                        @can('Treinos')
                         <a href="{{route('site.treinos')}}">Clique aqui</a>
+                        @endcan
                     </div>
                 </div>
             </div>
@@ -31,7 +35,9 @@
                         <span class="card-title">Exercícios</span>
                     </div>
                     <div class="card-action">
+                        @can('Exercicios')
                         <a href="{{route('site.exercicios')}}">Clique aqui</a>
+                        @endcan
                     </div>
                 </div>
             </div>
@@ -41,7 +47,9 @@
                         <span class="card-title">Dietas</span>
                     </div>
                     <div class="card-action">
+                        @can('Dietas')
                         <a href="{{route('site.dietas')}}">Clique aqui</a>
+                        @endcan
                     </div>
                 </div>
             </div>

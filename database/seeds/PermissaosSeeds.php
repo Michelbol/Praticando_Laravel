@@ -18,18 +18,27 @@ class PermissaosSeeds extends Seeder
         self::verificaPermissao('Alunos\Editar');
         self::verificaPermissao('Alunos\Deletar');
         self::verificaPermissao('Alunos\Treinos');
+                //===================== INICIO TELA DE TREINOS===================//
         self::verificaPermissao('Alunos\Treinos\Adicionar');
         self::verificaPermissao('Alunos\Treinos\Remover');
         self::verificaPermissao('Alunos\Treinos\Exercicios');
+                //===================== FIM TELA DE TREINOS===================//
+                //===================== INICIO TELA DE EXERCICIOS===================//
         self::verificaPermissao('Alunos\Treinos\Exercicios\Adicionar');
         self::verificaPermissao('Alunos\Treinos\Exercicios\Remover');
+                //===================== FIM TELA DE EXERCICIOS===================//
         //=======================================Fim Alunos========================================//
+
         //=======================================Inicio Treinos========================================//
         self::verificaPermissao('Treinos');
         self::verificaPermissao('Treinos\Adicionar');
         self::verificaPermissao('Treinos\Editar');
         self::verificaPermissao('Treinos\Deletar');
         self::verificaPermissao('Treinos\Exercicios');
+                //===================== INICIO TELA DE EXERCICIOS===================//
+        self::verificaPermissao('Treinos\Exercicios\Adicionar');
+        self::verificaPermissao('Treinos\Exercicios\Remover');
+                //===================== FIM TELA DE EXERCICIOS===================//
         //=======================================Fim Treinos========================================//
         //=======================================Inicio Exercícios========================================//
         self::verificaPermissao('Exercicios');
