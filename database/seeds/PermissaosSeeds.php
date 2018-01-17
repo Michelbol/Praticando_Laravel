@@ -18,6 +18,11 @@ class PermissaosSeeds extends Seeder
         self::verificaPermissao('Alunos\Editar');
         self::verificaPermissao('Alunos\Deletar');
         self::verificaPermissao('Alunos\Treinos');
+        self::verificaPermissao('Alunos\Treinos\Adicionar');
+        self::verificaPermissao('Alunos\Treinos\Remover');
+        self::verificaPermissao('Alunos\Treinos\Exercicios');
+        self::verificaPermissao('Alunos\Treinos\Exercicios\Adicionar');
+        self::verificaPermissao('Alunos\Treinos\Exercicios\Remover');
         //=======================================Fim Alunos========================================//
         //=======================================Inicio Treinos========================================//
         self::verificaPermissao('Treinos');

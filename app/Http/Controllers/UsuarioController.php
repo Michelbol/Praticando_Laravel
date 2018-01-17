@@ -94,7 +94,7 @@ class UsuarioController extends Controller{
 
     public function permissoes($id){
         $user = User::find($id);
-        $permissoes = Permissao::all();
+        $permissoes = Permissao::where('id', '>', 0)->orderBy('nome')->get();
         return view('admin.usuarios.permissoes', compact('user', 'permissoes'));
     }
     public function permissoessalvar(Request $request, $id){

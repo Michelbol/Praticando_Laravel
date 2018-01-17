@@ -26,7 +26,7 @@
                     <label>Exercicios Disponíveis</label>
                 </div>
                 <div class="row col 12">
-                    <button class="waves-effect waves-light btn">Adicionar</button>
+                    <button class="waves-effect waves-light btn" {{Auth::user()->can('Alunos\Treinos\Exercicios\Adicionar') ? '' : 'disabled'}}>Adicionar</button>
                 </div>
             </form>
             <table>
@@ -44,7 +44,7 @@
                         <td>{{$exercicio->nome}}</td>
                         <td>{{$exercicio->musculo}}</td>
                         <td><a class="waves-effect waves-light btn blue darken-1" href="javascript: if(confirm('Remover esse registro?')){
-                    window.location.href='{{route('site.aluno.treino.exercicio.deletar', [$treino->id, $exercicio->id])}}'}">Remover</a></td>
+                    window.location.href='{{route('site.aluno.treino.exercicio.deletar', [$treino->id, $exercicio->id])}}'}" {{Auth::user()->can('Alunos\Treinos\Exercicios\Remover') ? '' : 'disabled'}}>Remover</a></td>
                     </tr>
                 @endforeach
                 </tbody>

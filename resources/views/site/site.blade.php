@@ -9,7 +9,7 @@
                         <span class="card-title">Alunos</span>
                     </div>
                     <div class="card-action">
-                        <a href="{{Auth::user()->can('Alunos\Adicionar') ? route('site.alunos') : ''}}" class="disabled">Clique aqui</a>
+                        <a href="{{Auth::user()->can('Alunos') ? route('site.alunos') : ''}}" class="disabled">Clique aqui</a>
                     </div>
                 </div>
             </div>

@@ -29,7 +29,7 @@ Route::get('/admin',['as'=>'admin.login', function () {
 Route::post('/admin',['as'=>'admin.login', 'uses'=>'UsuarioController@loginAdmin']);
 Route::post('/',['as'=>'site.login', 'uses'=>'UsuarioController@login']);
 
-//------------------------------------------------------INICIO LOGADO------------------------------------------------------------------------
+//------------------------------------------------------INICIO SITE------------------------------------------------------------------------
 Route::group(['middleware'=>'auth'], function(){
 
     Route::get('/site/sair',['as'=>'site.sair', 'uses'=>'UsuarioController@sair']);
@@ -38,21 +38,26 @@ Route::group(['middleware'=>'auth'], function(){
         return view('site.site');
     }]);
 //------------------------------------------------------INICIO ALUNO-------------------------------------------------------------------------
-    Route::get('/alunos', ['as' => 'site.alunos', 'uses' =>'site\AlunoController@index']);
-    Route::get('/aluno/adicionar', ['as' => 'site.aluno.adicionar', 'uses' =>'site\AlunoController@adicionar']);
-    Route::post('/aluno/salvar', ['as' => 'site.aluno.salvar', 'uses' =>'site\AlunoController@salvar']);
-    Route::get('/aluno/editar/{id}', ['as' => 'site.aluno.editar', 'uses' =>'site\AlunoController@editar']);
-    Route::get('/aluno/deletar/{id}', ['as' => 'site.aluno.deletar', 'uses' =>'site\AlunoController@deletar']);
-    Route::post('/aluno/atualizar/{id}', ['as' => 'site.aluno.atualizar', 'uses' =>'site\AlunoController@atualizar']);
+    Route::get('/alunos', ['as' => 'site.alunos', 'uses' =>'site\AlunoController@index'])->middleware('can:Alunos');
+    Route::get('/aluno/adicionar', ['as' => 'site.aluno.adicionar', 'uses' =>'site\AlunoController@adicionar'])->middleware('can:Alunos\Adicionar');
+    Route::post('/aluno/salvar', ['as' => 'site.aluno.salvar', 'uses' =>'site\AlunoController@salvar'])->middleware('can:Alunos\Adicionar');
+    Route::get('/aluno/editar/{id}', ['as' => 'site.aluno.editar', 'uses' =>'site\AlunoController@editar'])->middleware('can:Alunos\Editar');
+    Route::get('/aluno/deletar/{id}', ['as' => 'site.aluno.deletar', 'uses' =>'site\AlunoController@deletar'])->middleware('can:Alunos\Deletar');
+    Route::post('/aluno/atualizar/{id}', ['as' => 'site.aluno.atualizar', 'uses' =>'site\AlunoController@atualizar'])->middleware('can:Alunos\Editar');
 //------------------------------------------------------FIM ALUNO----------------------------------------------------------------------------
 //------------------------------------------------------INICIO ALUNO/TREINO------------------------------------------------------------------
-    Route::get('/aluno/treino/{id}', ['as' => 'site.aluno.treino', 'uses' =>'site\AlunoController@treino']);
-    Route::post('/aluno/treino/salvar/{id}', ['as' => 'site.aluno.treino.salvar', 'uses' =>'site\AlunoController@salvarTreino']);
-    Route::get('/aluno/treino/deletar/{aluno_id}/{treino_id}', ['as' => 'site.aluno.treino.deletar', 'uses' =>'site\AlunoController@deletarTreino']);
+    Route::get('/aluno/treino/{id}', ['as' => 'site.aluno.treino', 'uses' =>'site\AlunoController@treino'])->middleware('can:Alunos\Treinos');
+
+    Route::post('/aluno/treino/salvar/{id}', ['as' => 'site.aluno.treino.salvar', 'uses' =>'site\AlunoController@salvarTreino'])->middleware('can:Alunos\Treinos\Adicionar');
+
+    Route::get('/aluno/treino/deletar/{aluno_id}/{treino_id}', ['as' => 'site.aluno.treino.deletar', 'uses' =>'site\AlunoController@deletarTreino'])->middleware('can:Alunos\Treinos\Remover');
+
                     //----------------------TREINO/EXERCICIOS-------------------//
-    Route::get('/aluno/treino/exercicios/{id_treino}/{id_exercicio}', ['as' => 'site.aluno.treino.exercicio', 'uses' =>'site\AlunoController@treinoExercicios']);
-    Route::post('/aluno/treino/exercicio/salvar/{id}', ['as' => 'site.aluno.treino.exercicio.salvar', 'uses' =>'site\AlunoController@salvarExercicio']);
-    Route::get('/aluno/treino/exercicio/deletar/{treino_id}/{exercicio_id}', ['as' => 'site.aluno.treino.exercicio.deletar', 'uses' =>'site\AlunoController@deletarExercicio']);
+    Route::get('/aluno/treino/exercicios/{id_treino}/{id_exercicio}', ['as' => 'site.aluno.treino.exercicio', 'uses' =>'site\AlunoController@treinoExercicios'])->middleware('can:Alunos\Treinos\Exercicios');
+
+    Route::post('/aluno/treino/exercicio/salvar/{id}', ['as' => 'site.aluno.treino.exercicio.salvar', 'uses' =>'site\AlunoController@salvarExercicio'])->middleware('can:Alunos\Treinos\Exercicios\Adicionar');
+
+    Route::get('/aluno/treino/exercicio/deletar/{treino_id}/{exercicio_id}', ['as' => 'site.aluno.treino.exercicio.deletar', 'uses' =>'site\AlunoController@deletarExercicio'])->middleware('can:Alunos\Treinos\Exercicios\Remover');
                     //---------------------FIM TREINO/EXERCÍCIOS---------------//
 //------------------------------------------------------FIM ALUNO/TREINO---------------------------------------------------------------------
 //------------------------------------------------------INICIO TREINO------------------------------------------------------------------------
@@ -95,13 +100,15 @@ Route::group(['middleware'=>'auth'], function(){
     //------------------------------------------------------FIM ITEMDIETA------------------------------------------------------------------------
 
 });
+//------------------------------------------------------FIM SITE---------------------------------------------------------------------------
 
+//------------------------------------------------------INICIO PAINEL ADMINISTRATIVO---------------------------------------------------------------
 Route::group(['middleware'=>'auth-painel'], function(){
     Route::get('/admin/principal',['as'=>'admin.principal', function () {
         return view('admin.site');
     }]);
     Route::get('/admin/sair',['as'=>'admin.sair', 'uses'=>'UsuarioController@sairAdmin']);
-    //------------------------------------------------------INICIO USUÁRIO-------------------------------------------------------------------------
+    //------------------------------------------------------INICIO USUÁRIO-----------------------------------------------------------------------
     Route::get('admin/usuarios', ['as' => 'admin.usuarios', 'uses' =>'UsuarioController@index']);
     Route::get('admin/usuario/adicionar', ['as' => 'admin.usuario.adicionar', 'uses' =>'UsuarioController@adicionar']);
     Route::get('admin/usuario/permissoes/{id}', ['as' => 'admin.usuario.permissoes', 'uses' =>'UsuarioController@permissoes']);
@@ -111,6 +118,6 @@ Route::group(['middleware'=>'auth-painel'], function(){
     Route::get('admin/usuario/editar/{id}', ['as' => 'admin.usuario.editar', 'uses' =>'UsuarioController@editar']);
     Route::get('admin/usuario/deletar/{id}', ['as' => 'admin.usuario.deletar', 'uses' =>'UsuarioController@deletar']);
     Route::post('admin/usuario/atualizar/{id}', ['as' => 'admin.usuario.atualizar', 'uses' =>'UsuarioController@atualizar']);
-//------------------------------------------------------FIM USUÁRIO----------------------------------------------------------------------------
+//------------------------------------------------------FIM PAINEL ADMINISTRATIVO---------------------------------------------------------------
+
 });
-//------------------------------------------------------FIM LOGADO---------------------------------------------------------------------------

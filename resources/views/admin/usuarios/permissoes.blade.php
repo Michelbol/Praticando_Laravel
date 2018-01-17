@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h2 class="center">Lista de Permissões</h2>
+            <h2 class="center">Lista de Permissões - Usuário: {{ $user->name }}</h2>
             <div class="row">
                 <nav>
                     <div class="nav-wrapper blue darken-1">
